@@ -10,6 +10,8 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/outputs.h>
 
+#include "swiss-keymap.h"
+
 #define BASE   0
 #define NAVR   1
 #define SYMB   2
@@ -43,7 +45,7 @@
 //  *          |Sticky|   A  |   S  |   D  |   F  |   G  |                                               |   H  |   J  |   K  |   L  |  ; : | Bksp |
 //  *          |  SFT |  GUI | LALT | LCTL | LSFT |      |                                               |      | LSFT | LCTL |  ALT |  GUI |      |
 //  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
-//  *          |  ESC |   Z  |   X  |   C  |   F  |   B  |                                               |   N  |   M  |  , < |  . > |  / ? | Adj  |
+//  *          |  ESC |   Z  |   X  |   C  |   V  |   B  |                                               |   N  |   M  |  , < |  . > |  / ? | Adj  |
 //  *          |  CTL |      | RALT |      |      |      |                                               |      |      |      | RALT |      |      |
 //  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
 //  *                                             |  ESC | Space| TAB  |                   | Bksp | Enter| Del  |
@@ -51,9 +53,9 @@
 //  *                                             `--------------------'                   `--------------------'
 //  */
             bindings = <
-                    &kp Q         &kp W        &kp E            &kp R          &kp T             &kp Y         &kp U        &kp I        &kp O        &kp P 
+                    &kp Q         &kp W        &kp E            &kp R          &kp T             &kp CH_Z      &kp U        &kp I        &kp O        &kp P 
     &sk LSHIFT      &hm LGUI A    &hm LALT S   &hm LCTRL D      &hm LSHFT F    &kp G             &kp H         &hm LSHFT J  &hm LCTRL K  &hm LALT L   &hm LGUI SEMI &kp BSPC
-    &mt LCTRL ESC   &kp Z         &hm RALT X   &kp C            &kp V          &kp B             &kp N         &kp M        &kp COMMA    &hm RALT DOT &kp FSLH      &mo ADJL
+    &mt LCTRL ESC   &kp CH_Y      &hm RALT X   &kp C            &kp V          &kp B             &kp N         &kp M        &kp COMMA    &hm RALT DOT &kp FSLH      &mo ADJL
                                                &mt LCTRL ESC    &lt NAVR SPACE &lt NUMR TAB      &lt FUNL BSPC &lt SYMB RET &kp DEL
             >;
 
@@ -91,25 +93,25 @@
 // /*
 //  * Symbol Layer
 //  *
-//  *                 ,----------------------------------.                                                     ,----------------------------------.
-//  *                 |   `  |   ~  |   |  |   \  |      |                                                     |      |   /  |   +  |   =  |   ?  |      
-//  *                 |      |      |      |      |      |                                                     |      |      |      |      |      |      
-//  *          ,------+------+------+------+------+------|                                                     |------+------+------+------+------+------.
-//  *          |      |   !  |   @  |   #  |   $  |   %  |                                                     |   ^  |   &  |   *  |   (  |   )  |      |
-//  *          |      |      |      |      |      |      |                                                     |      |      |      |      |      |      |
-//  *          |------+------+------+------+------+------|                                                     |------+------+------+------+------+------|
-//  *          |      |   :  |   ;  |   -  |   [  |   {  |                                                     |   }  |   ]  |   _  |   ,  |   .  |      |
-//  *          |      |      |      |      |      |      |                                                     |      |      |      |      |      |      |
-//  *          `----------------------------------+------+-------------.                         ,-------------+------+----------------------------------'
-//  *                                             |      | Space| TAB  |                         |  DEL | Enter|      |
-//  *                                             |      |      |      |                         |      |      |      |
-//  *                                             `--------------------'                         `--------------------'
+//  *                 ,----------------------------------.                                               ,----------------------------------.
+//  *                 |   `  |   @  |   {  |   }  |   $  |                                               |   ¨  |   ü  |   /  |   \  |   ^  |      
+//  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
+//  *          ,------+------+------+------+------+------|                                               |------+------+------+------+------+------.
+//  *          |      |   ä  |   &  |   (  |   )  |   |  |                                               |   '  |   "  |   ?  |   !  |   +  |      |
+//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
+//  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
+//  *          |      |   %  |   #  |   [  |   ]  |   ~  |                                               |   €  |   =  |   *  |   <  |   >  |      |
+//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
+//  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
+//  *                                             |      | SPACE| TAB  |                   |      |      |      |
+//  *                                             |      |      |      |                   |      |      |      |
+//  *                                             `--------------------'                   `--------------------'
 //  */
             bindings = <
-                      &kp GRAVE  &kp TILDE &kp PIPE        &kp BSLH  &none            &none     &kp SLASH  &kp PLUS    &kp EQUAL &kp QMARK
-             &trans   &kp EXCL   &kp AT    &kp NON_US_HASH &kp DLLR  &kp PRCNT        &kp CARET &kp AMPS   &kp ASTRK   &kp LPAR  &kp RPAR   &trans
-             &trans   &kp COLON  &kp SEMI  &kp MINUS       &kp LBKT  &kp LBRC         &kp RBRC  &kp RBKT   &kp UNDER   &kp COMMA &kp DOT    &trans
-                                           &trans          &kp SPACE &kp TAB          &kp BSPC  &kp RET    &trans
+                      &kp CH_GRV  &kp CH_AT   &kp CH_LCBR &kp CH_RCBR &kp CH_DLR       &kp CH_DIAE &kp CH_UDIA &kp CH_SLSH &kp CH_BSLS &kp CH_CIRC
+             &trans   &kp CH_ADIA &kp CH_AMPR &kp CH_LPRN &kp CH_RPRN &kp CH_PIPE      &kp CH_QUOT &kp CH_DQUO &kp CH_QUES &kp CH_EXLM &kp CH_PLUS &trans
+             &trans   &kp CH_PERC &kp CH_HASH &kp CH_LBRC &kp CH_RBRC &kp CH_TILD      &kp CH_EURO &kp CH_EQL  &kp CH_ASTR &kp CH_LABK &kp CH_RABK &trans
+                                              &trans      &kp SPACE   &kp TAB          &kp BSPC    &kp RET     &trans
             >;
         };
 
