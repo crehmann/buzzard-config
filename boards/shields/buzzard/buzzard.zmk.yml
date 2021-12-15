@@ -1,0 +1,13 @@
+file_format: "1"
+id: buzzard
+name: Buzzard
+type: shield
+url: https://github.com/crehmann/Buzzard
+requires: [pro_micro]
+exposes: [spi_lcd]
+features:
+  - keys
+  - display
+siblings:
+  - buzzard_left
+  - buzzard_right
