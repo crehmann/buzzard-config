@@ -12,12 +12,10 @@
 
 #include "swiss-keymap.h"
 
-#define BASE   0
-#define NAVR   1
-#define SYMB   2
-#define NUMR   3
-#define FUNL   4
-#define ADJL   5    
+#define BASE    0
+#define SYMBOL  1
+#define FUNNUM  2  
+#define CTLNAV  3 
 
 / {
 	behaviors {
@@ -31,6 +29,74 @@
             bindings = <&kp>, <&kp>;
         };
     };
+    combos {
+        compatible = "zmk,combos";
+        combo_nav1 {
+            timeout-ms = <50>;
+            key-positions = <34 35>;
+            bindings = <&to CTLNAV>;
+        };
+        combo_nav2 {
+            timeout-ms = <50>;
+            key-positions = <35 36>;
+            bindings = <&to CTLNAV>;
+        };
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <11 23>;
+            bindings = <&kp ESC>;
+        };
+        combo_ctrl_t {
+            timeout-ms = <50>;
+            key-positions = <4 15>;
+            bindings = <&kp LC(T)>;
+        };
+        combo_ctrl_z {
+            timeout-ms = <50>;
+            key-positions = <5 16>;
+            bindings = <&kp LC(CH_Z)>;
+        };
+        combo_delete_left {
+            timeout-ms = <50>;
+            key-positions = <13 25>;
+            bindings = <&kp DEL>;
+        };
+        combo_enter_left {
+            timeout-ms = <50>;
+            key-positions = <14 26>;
+            bindings = <&kp ENTER>;
+        };
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <15 27>;
+            bindings = <&kp TAB>;
+        };
+        combo_bkspc {
+            timeout-ms = <50>;
+            key-positions = <16 28>;
+            bindings = <&kp BACKSPACE>;
+        };
+        combo_enter_right {
+            timeout-ms = <50>;
+            key-positions = <17 29>;
+            bindings = <&kp ENTER>;
+        };
+        combo_delete_right {
+            timeout-ms = <50>;
+            key-positions = <18 30>;
+            bindings = <&kp DEL>;
+        };
+        combo_caps_word1 {
+            timeout-ms = <50>;
+            key-positions = <37 38>;
+            bindings = <&caps_word>;
+        };
+        combo_caps_word2 {
+            timeout-ms = <50>;
+            key-positions = <38 39>;
+            bindings = <&caps_word>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
         base {
@@ -42,53 +108,26 @@
 //  *                 |   Q  |   W  |   E  |   R  |   T  |                                               |   Y  |   U  |   I  |   O  |   P  |      
 //  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
 //  *          ,------+------+------+------+------+------|                                               |------+------+------+------+------+------.
-//  *          |Sticky|   A  |   S  |   D  |   F  |   G  |                                               |   H  |   J  |   K  |   L  |  ; : | Bksp |
-//  *          |  SFT |  GUI | LALT | LCTL | LSFT |      |                                               |      | LSFT | LCTL |  ALT |  GUI |      |
+//  *          |      |   A  |   S  |   D  |   F  |   G  |                                               |   H  |   J  |   K  |   L  |  ; : |      |
+//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
 //  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
-//  *          |  ESC |   Z  |   X  |   C  |   V  |   B  |                                               |   N  |   M  |  , < |  . > |  / ? | Adj  |
-//  *          |  CTL |      | RALT |      |      |      |                                               |      |      |      | RALT |      |      |
+//  *          |      |   Z  |   X  |   C  |   V  |   B  |                                               |   N  |   M  |  , < |  . > |  / ? |      |
+//  *          |      |  RALT|  GUI | LALT |      |      |                                               |      |      | LALT |  GUI | RALT |      |
 //  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
-//  *                                             |  ESC | Space| TAB  |                   | Bksp | Enter| Del  |
-//  *                                             |  CTL | NAVR | NUMR |                   | FUNL | SYML |      |
+//  *                                             |Sticky| Space|Sticky|                   |Sticky| SYMB |Sticky|
+//  *                                             | Ctrl |      | Ctrl |                   | Shift|      | Shift|
 //  *                                             `--------------------'                   `--------------------'
 //  */
             bindings = <
-                    &kp Q         &kp W        &kp E            &kp R          &kp T             &kp CH_Z      &kp U        &kp I        &kp O        &kp P 
-    &sk LSHIFT      &hm LGUI A    &hm LALT S   &hm LCTRL D      &hm LSHFT F    &kp G             &kp H         &hm LSHFT J  &hm LCTRL K  &hm LALT L   &hm LGUI SEMI &kp BSPC
-    &mt LCTRL ESC   &kp CH_Y      &hm RALT X   &kp C            &kp V          &kp B             &kp N         &kp M        &kp COMMA    &hm RALT DOT &kp FSLH      &mo ADJL
-                                               &mt LCTRL ESC    &lt NAVR SPACE &lt NUMR TAB      &lt FUNL BSPC &lt SYMB RET &kp DEL
+                &kp Q         &kp W        &kp E        &kp R      &kp T             &kp CH_Z      &kp U        &kp I          &kp O        &kp P 
+    &trans      &kp A         &kp S        &kp D        &kp F      &kp G             &kp H         &hm LSHFT J  &kp K          &kp L        &kp SEMI      &trans
+    &trans      &hm RALT CH_Y &hm LGUI X   &hm LALT C   &kp V      &kp B             &kp N         &kp M        &hm LALT COMMA &hm LGUI DOT &hm RALT FSLH &trans
+                                           &sk LCTRL    &kp SPACE  &sk LCTRL         &sk LSHFT     &to SYMBOL   &sk LSHFT
             >;
 
         };
-
-        navr {
-            label = "NAV";
-// /*
-//  * Navigation Layer (Right)
-//  *
-//  *                 ,----------------------------------.                                               ,----------------------------------.
-//  *                 |      |      |      |      |      |                                               |Insert| Cut  | PgUp | PgDn |      |      
-//  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
-//  *          ,------+------+------+------+------+------|                                               |------+------+------+------+------+------.
-//  *          |      |      |      |      |      |      |                                               | Copy |   ←  |   ↑  |   ↓  |   →  |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
-//  *          |      |      |      |      |      |      |                                               | Paste| Home | WH_U | WH_D | End  |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
-//  *                                             |      |      |      |                   | Bksp | Enter|      |
-//  *                                             |      |      |      |                   |      |      |      |
-//  *                                             `--------------------'                   `--------------------'
-//  */
-            bindings = <
-                      &trans    &trans    &trans    &trans    &trans            &kp INS     &kp K_CUT  &kp PG_UP  &kp PG_DN  &none
-            &trans    &trans    &trans    &trans    &trans    &trans            &kp K_COPY  &kp LEFT   &kp UP     &kp DOWN   &kp RIGHT  &trans
-            &trans    &trans    &trans    &trans    &trans    &trans            &kp K_PASTE &kp HOME   &none      &none      &kp END    &trans
-                                          &trans    &trans    &trans            &kp BSPC    &kp RET    &trans
-            >;
-        };
-
-        symr {
+        
+        symbol {
             label = "SYM";
 // /*
 //  * Symbol Layer
@@ -103,98 +142,73 @@
 //  *          |      |   %  |   #  |   [  |   ]  |   ~  |                                               |   €  |   =  |   *  |   <  |   >  |      |
 //  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
 //  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
-//  *                                             |      | SPACE| TAB  |                   |      |      |      |
-//  *                                             |      |      |      |                   |      |      |      |
+//  *                                             |      | BASE |      |                   |      | FUN/ |      |
+//  *                                             |      |      |      |                   |      | NUM  |      |
 //  *                                             `--------------------'                   `--------------------'
 //  */
             bindings = <
                       &kp CH_GRV  &kp CH_AT   &kp CH_LCBR &kp CH_RCBR &kp CH_DLR       &kp CH_DIAE &kp CH_UDIA &kp CH_SLSH &kp CH_BSLS &kp CH_CIRC
              &trans   &kp CH_ADIA &kp CH_AMPR &kp CH_LPRN &kp CH_RPRN &kp CH_PIPE      &kp CH_QUOT &kp CH_DQUO &kp CH_QUES &kp CH_EXLM &kp CH_PLUS &trans
              &trans   &kp CH_PERC &kp CH_HASH &kp CH_LBRC &kp CH_RBRC &kp CH_TILD      &kp CH_EURO &kp CH_EQL  &kp CH_ASTR &kp CH_LABK &kp CH_RABK &trans
-                                              &trans      &kp SPACE   &kp TAB          &kp BSPC    &kp RET     &trans
+                                              &trans      &to BASE    &trans           &trans      &to FUNNUM  &trans
             >;
         };
 
-        numr {
-            label = "NUM";
+        fun_num {
+            label = "FUN/NUM";
 // /*
 //  * Number Layer (Right)
 //  *
-//  *                 ,----------------------------------.                                               ,----------------------------------.
-//  *                 |      |      |      |      |      |                                               |   /  |   7  |   8  |   9  |  -   |      
-//  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
-//  *          ,------+------+------+------+------+------|                                               |------+------+------+------+------+------.
-//  *          |      |      |      |      |      |      |                                               |   *  |   4  |   5  |  6   |  +   |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
-//  *          |      |      |      |      |      |      |                                               |   0  |   1  |   2  |  3   |  .   |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
-//  *                                             |      |      |      |                   |  DEL | Enter|      |
-//  *                                             |      |      |      |                   |      |      |      |
-//  *                                             `--------------------'                   `--------------------'
+//  *                 ,----------------------------------.                                                    ,----------------------------------.
+//  *                 |  F12 |  F7  |  F8  |  F9  | Pause|                                                    |   /  |   7  |   8  |   9  |  -   |      
+//  *                 |      |      |      |      |      |                                                    |      |      |      |      |      |      
+//  *          ,------+------+------+------+------+------|                                                    |------+------+------+------+------+------.
+//  *          |      |  F11 |  F4  |  F5  |  F6  | PrScr|                                                    |   *  |   4  |   5  |  6   |  +   |      |
+//  *          |      |      |      |      |      |      |                                                    |      |      |      |      |      |      |
+//  *          |------+------+------+------+------+------|                                                    |------+------+------+------+------+------|
+//  *          |      |  F10 |  F1  |  F2  |  F3  | CapsL|                                                    |   0  |   1  |   2  |  3   |  .   |      |
+//  *          |      |  RALT|  GUI | LALT |      |      |                                                    |      |      | LALT |  GUI | RALT |      |
+//  *          `----------------------------------+------+-------------.                        ,-------------+------+----------------------------------'
+//  *                                             |      | BASE |      |                        |      | SYMB |      |
+//  *                                             |      |      |      |                        |      |      |      |
+//  *                                             `--------------------'                        `--------------------'
 //  */
             bindings = <
-                      &trans    &trans    &trans    &trans    &trans            &kp SLASH &kp N7    &kp N8    &kp N9    &kp MINUS
-            &trans    &trans    &trans    &trans    &trans    &trans            &kp ASTRK &kp N4    &kp N5    &kp N6    &kp PLUS   &trans
-            &trans    &trans    &trans    &trans    &trans    &trans            &kp N0    &kp N1    &kp N2    &kp N3    &kp DOT    &trans
-                                          &trans    &trans    &trans            &kp BSPC  &kp RET   &trans
+                     &kp F12       &kp F7      &kp F8      &kp F9    &kp PAUSE_BREAK         &kp SLASH &kp N7     &kp N8      &kp N9       &kp MINUS
+             &trans  &kp F11       &kp F4      &kp F5      &kp F6    &kp PSCRN               &kp ASTRK &kp N4     &kp N5      &kp N6       &kp PLUS       &trans
+             &trans  &hm RALT F10  &hm LGUI F1 &hm LALT F2 &kp F3    &kp CLCK                &kp N0    &kp N1     &hm LALT N2 &hm LGUI  N3 &hm RALT DOT   &trans
+                                             &trans        &to BASE  &trans                  &trans    &to SYMBOL &trans
             >;
         };
 
-        funl {
-            label = "FUN";
+        ctl_nav {
+            label = "CTRL/NAV";
 // /*
-//  * Function Layer (Left)
+//  * Navigation Layer (Right)
 //  *
-//  *                 ,----------------------------------.                                               ,----------------------------------.
-//  *                 |  F12 |  F7  |  F8  |  F9  | Pause|                                               |      |      |      |      |      |      
-//  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
-//  *          ,------+------+------+------+------+------|                                               |------+------+------+------+------+------.
-//  *          |      |  F11 |  F4  |  F5  |  F6  | PrScr|                                               |      |      |      |      |      |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
-//  *          |      |  F10 |  F1  |  F2  |  F3  | CapsL|                                               |      |      |      |      |      |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
-//  *                                             |      | Space|  TAB |                   |      |      |      |
-//  *                                             |      |      |      |                   |      |      |      |
-//  *                                             `--------------------'                   `--------------------'
+//  *                 ,----------------------------------.                                                                ,----------------------------------.
+//  *                 |BT_CLR| BT 0 | BT 1 | BT 2 | OutTg|                                                                |      |      | PgUp | PgDn |      |      
+//  *                 |      |      |      |      |      |                                                                |      |      |      |      |      |      
+//  *          ,------+------+------+------+------+------|                                                                |------+------+------+------+------+------.
+//  *          |      |M Prev| VolDn| VolUp|M Next| Mute |                                                                |      |   ←  |   ↑  |   ↓  |   →  |      |
+//  *          |      |      |      |      |      |  Mic |                                                                |      |      |      |      |      |      |
+//  *          |------+------+------+------+------+------|                                                                |------+------+------+------+------+------|
+//  *          |      | Boot |      |      |      |      |                                                                |      | Home | WH_U | WH_D | End  |      |
+//  *          |      |      |      |      |      |      |                                                                |      |      |      |      |      |      |
+//  *          `----------------------------------+------+-------------.                                    ,-------------+------+----------------------------------'
+//  *                                             |      | BASE |      |                                    |      | SYMB |      |
+//  *                                             |      |      |      |                                    |      |      |      |
+//  *                                             `--------------------'                                    `--------------------'
 //  */
             bindings = <
-                      &kp F12    &kp F7   &kp F8   &kp F9    &kp PAUSE_BREAK         &trans    &trans    &trans    &trans    &trans  
-             &trans   &kp F11    &kp F4   &kp F5   &kp F6    &kp PSCRN               &trans    &trans    &trans    &trans    &trans    &trans
-             &trans   &kp F10    &kp F1   &kp F2   &kp F3    &kp CLCK                &trans    &trans    &trans    &trans    &trans    &trans
-                                          &trans   &kp SPACE &kp TAB                 &trans    &trans    &trans
+                            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &out OUT_TOG       &none  &none      &kp PG_UP  &kp PG_DN  &none
+             &trans         &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT   &trans             &none  &kp LEFT   &kp UP     &kp DOWN   &kp RIGHT  &trans
+             &bootloader    &trans     &trans       &kp K_MUTE   &kp C_PP     &trans             &none  &kp HOME   &none      &none      &kp END    &trans
+                                                    &trans       &to BASE     &trans             &trans &to SYMBOL &trans
             >;
         };
 
-        adjl {
-            label = "ADJ";
-// /*
-//  * Adjustment Layer (Left)
-//  *
-//  *                 ,----------------------------------.                                               ,----------------------------------.
-//  *                 |BT_CLR| BT 0 | BT 1 | BT 2 | OutTg|                                               |      |      |      |      |      |      
-//  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
-//  *          ,------+------+------+------+------+------|                                               |------+------+------+------+------+------.
-//  *          |      |M Prev| VolDn| VolUp|M Next|      |                                               |      |      |      |      |      |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          |------+------+------+------+------+------|                                               |------+------+------+------+------+------|
-//  *          | Boot |      |      | Mute | Play |      |                                               |      |      |      |      |      |      |
-//  *          |      |      |      |      |      |      |                                               |      |      |      |      |      |      |
-//  *          `----------------------------------+------+-------------.                   ,-------------+------+----------------------------------'
-//  *                                             |      | Space| TAB  |                   |      |      |      |
-//  *                                             |      |      |      |                   |      |      |      |
-//  *                                             `--------------------'                   `--------------------'
-//  */
-            bindings = <
-                            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &out OUT_TOG            &trans    &trans    &trans    &trans    &trans  
-             &trans         &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT   &trans                  &trans    &trans    &trans    &trans    &trans    &trans
-             &bootloader    &trans     &trans       &kp K_MUTE   &kp C_PP     &trans                  &trans    &trans    &trans    &trans    &trans    &trans
-                                                    &trans       &kp SPACE    &kp TAB                 &trans    &trans    &trans
-            >;
-        };
+
     };
 };
 
