@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+ #include "digiti.dtsi"
+
+    &default_transform {
+        col-offset = <6>;
+    };
+    
+    &kscan0 {
+        col-gpios
+            = <&gpio0 26 GPIO_ACTIVE_HIGH>
+            , <&gpio0  4 GPIO_ACTIVE_HIGH>
+            , <&gpio0  6 GPIO_ACTIVE_HIGH>
+            , <&gpio0  8 GPIO_ACTIVE_HIGH>
+            , <&gpio1  4 GPIO_ACTIVE_HIGH>
+            ;
+    };

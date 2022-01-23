@@ -1,0 +1,99 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+ #include <behaviors.dtsi>
+ #include <dt-bindings/zmk/keys.h>
+ #include <dt-bindings/zmk/bt.h>
+ #include <dt-bindings/zmk/ext_power.h>
+ #include <dt-bindings/zmk/outputs.h>
+ 
+ #include "swiss-keymap.h"
+ 
+ #define BASE   0
+ #define NAVR   1
+ #define SYMB   2
+ #define NUMR   3
+ #define FUNL   4
+ #define ADJL   5    
+ 
+ / {
+     behaviors {
+         hm: homerow_mods {
+             compatible = "zmk,behavior-hold-tap";
+             label = "HOMEROW_MODS";
+             #binding-cells = <2>;
+             tapping-term-ms = <280>;
+             quick_tap_ms = <0>;
+             flavor = "tap-preferred";
+             bindings = <&kp>, <&kp>;
+         };
+     };
+ // /*
+ //  *
+ //  *               ,------------------------.                               ,------------------------.
+ //  *               | 00 | 01 | 02 | 03 | 04 |                               | 05 | 06 | 07 | 08 | 09 |      
+ //  *               |----+----+----+----+----|                               |----+----+----+----+----|
+ //  *               | 10 | 11 | 12 | 13 | 14 |                               | 15 | 16 | 17 | 18 | 19 |
+ //  *               |----+----+----+----+----|                               |----+----+----+----+----|
+ //  *               | 20 | 21 | 22 | 23 | 24 |                               | 25 | 26 | 27 | 28 | 29 |
+ //  *               `------------------------+----.                     ,----+----+-------------------'
+ //  *                    | 30 | 31 | 32 | 33 | 34 |                     | 35 | 36 | 37 | 38 | 39 |
+ //  *                    `------------------------'                     `------------------------'
+ //  */
+     combos {
+         compatible = "zmk,combos";
+         combo_ctrl_t {
+             timeout-ms = <50>;
+             key-positions = <4 15>;
+             bindings = <&kp LC(T)>;
+         };
+         combo_ctrl_z {
+             timeout-ms = <50>;
+             key-positions = <5 16>;
+             bindings = <&kp LC(CH_Z)>;
+         };
+         combo_delete_left {
+             timeout-ms = <50>;
+             key-positions = <2 13>;
+             bindings = <&kp DEL>;
+         };
+         combo_enter_left {
+             timeout-ms = <50>;
+             key-positions = <3 14>;
+             bindings = <&kp ENTER>;
+         };
+     };
+     keymap {
+         compatible = "zmk,keymap";
+         base {
+             label = "BASE";
+ // /*
+ //  * Base Layer
+ //  *
+ //  *                 ,----------------------------------.                                               ,----------------------------------.
+ //  *                 |   Q  |   W  |   E  |   R  |   T  |                                               |   Y  |   U  |   I  |   O  |   P  |      
+ //  *                 |      |      |      |      |      |                                               |      |      |      |      |      |      
+ //  *                 |------+------+------+------+------|                                               |------+------+------+------+------|
+ //  *                 |   A  |   S  |   D  |   F  |   G  |                                               |   H  |   J  |   K  |   L  |  ; : |
+ //  *                 |  GUI | LALT | LCTL | LSFT |      |                                               |      | LSFT | LCTL |  ALT |  GUI |
+ //  *                 |------+------+------+------+------|                                               |------+------+------+------+------|
+ //  *                 |   Z  |   X  |   C  |   V  |   B  |                                               |   N  |   M  |  , < |  . > |  / ? |
+ //  *                 |      | RALT |      |      |      |                                               |      |      |      | RALT |      |
+ //  *                 `---------------------------+------+------.                                 ,------+------+---------------------------'
+ //  *                        |  ESC |  ESC |  ESC | Space| TAB  |                                 | Bksp | Enter| Del  | Del  | Del  |
+ //  *                        |  CTL |  CTL |  CTL | NAVR | NUMR |                                 | FUNL | SYML |      |      |      |
+ //  *                        `----------------------------------'                                 `----------------------------------'
+ //  */
+             bindings = <
+                     &kp Q         &kp W        &kp E            &kp R          &kp T             &kp CH_Z      &kp U        &kp I        &kp O        &kp P 
+                     &hm LGUI A    &hm LALT S   &hm LCTRL D      &hm LSHFT F    &kp G             &kp H         &hm LSHFT J  &hm LCTRL K  &hm LALT L   &hm LGUI SEMI
+                     &kp CH_Y      &hm RALT X   &kp C            &kp V          &kp B             &kp N         &kp M        &kp COMMA    &hm RALT DOT &kp FSLH     
+                     &ext_power EP_ON      &ext_power EP_OFF   &kp C            &kp V          &kp B             &kp N         &kp M        &kp COMMA    &hm RALT DOT &kp FSLH     
+             >;
+ 
+         };
+        };
+    };
