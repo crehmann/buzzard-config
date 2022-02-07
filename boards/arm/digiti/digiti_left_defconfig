@@ -32,8 +32,8 @@ CONFIG_ZMK_DISPLAY=y
 CONFIG_LVGL_USE_THEME_MONO=y
 
 # # Turn on logging, and set ZMK logging to debug output
-CONFIG_ZMK_USB_LOGGING=y
+# CONFIG_ZMK_USB_LOGGING=y
 
 # # Turn on logging, and set ZMK logging to debug output
-CONFIG_LOG=y
-CONFIG_ZMK_LOG_LEVEL_DBG=y
+# CONFIG_LOG=y
+# CONFIG_ZMK_LOG_LEVEL_DBG=y
