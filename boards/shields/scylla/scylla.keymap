@@ -25,7 +25,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <150>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -59,17 +59,17 @@
                 &kp TAB       &kp Q            &kp W             &kp E         &kp R          &kp T                    &kp Y         &kp U          &kp I           &kp O         &kp P         &kp DEL
                 &sk LSHIFT    &kp A            &kp S             &kp D         &kp F          &kp G                    &kp H         &kp J          &kp K           &kp L         &kp K         &kp ENTER
                 &caps_word    &hm LGUI Z       &hm LALT X        &hm LCTRL C   &hm LSHFT V    &hm RALT B               &hm RALT N    &hm LSHFT M    &hm LCTRL COMMA &hm LALT DOT  &hm LGUI FSLH &kp LS(LG(M))
-                              &kp LG(LC(LEFT)) &kp LG(LC(RIGHT)) &mt LCTRL ESC &lt NAVR SPACE &lt NUMR TAB             &lt FUNL BSPC &lt SYMB SPACE &mt LSHIFT RET  &kp LA(LEFT)  &kp LA(RIGHT)
+                              &kp LG(LC(LEFT)) &kp LG(LC(RIGHT)) &mt LCTRL ESC &lt NAVR SPACE &lt NUMR TAB             &lt FUNL BSPC &lt SYMB RET   &mt LSHIFT DEL  &kp LA(LEFT)  &kp LA(RIGHT)
             >;
         };
         navr {
             label = "NAV";
             bindings = <
                 &trans        &trans         &trans         &trans          &trans         &trans                   &trans         &trans          &trans         &trans         &trans         &trans
-                &trans        &trans         &trans         &trans          &trans         &trans                   &trans         &kp HOME        &kp UP         &kp END        &kp PSCRN      &trans
-                &trans        &trans         &trans         &trans          &trans         &trans                   &trans         &kp LEFT        &kp DOWN       &kp RIGHT      &kp DEL        &trans
-                &trans        &trans         &kp LC(X)      &kp LC(C)       &kp LC(V)      &trans                   &trans         &kp PAUSE_BREAK &kp PG_DN      &kp PG_UP      &trans         &trans
-                              &trans         &trans         &trans          &trans         &trans                   &kp RET        &kp SPACE       &kp BSPC       &trans         &trans 
+                &trans        &trans         &trans         &trans          &trans         &trans                   &kp LC(X)      &kp HOME        &kp UP         &kp END        &kp PSCRN      &trans
+                &trans        &trans         &trans         &trans          &trans         &trans                   &kp LC(C)      &kp LEFT        &kp DOWN       &kp RIGHT      &none          &trans
+                &trans        &trans         &trans         &trans          &trans         &trans                   &kp LC(V)      &kp PAUSE_BREAK &kp PG_DN      &kp PG_UP      &trans         &trans
+                              &trans         &trans         &trans          &trans         &trans                   &kp BSPC       &kp RET         &kp DEL        &trans         &trans 
             >;
         };
         symb {
