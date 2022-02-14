@@ -42,9 +42,10 @@ config ZMK_BATTERY_VOLTAGE_DIVIDER
 config ZMK_DISPLAY
 	select LVGL_USE_CONT
 	select LVGL_FONT_MONTSERRAT_26
+    select LVGL_USE_IMG
 
 choice ZMK_DISPLAY_STATUS_SCREEN
-	default ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN
+	default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 endchoice
 
 if ZMK_DISPLAY
@@ -84,5 +85,8 @@ config USB_NRFX
 config USB_DEVICE_STACK
 	default y
 endif # USB
+
+menuconfig CUSTOM_WIDGET_BATTERY_STATUS
+	bool "custom battery status widget"
 
 endif # BOARD_DIGITI_LEFT || BOARD_DIGITI_RIGHT
