@@ -89,4 +89,7 @@ endif # USB
 menuconfig CUSTOM_WIDGET_BATTERY_STATUS
 	bool "custom battery status widget"
 
+menuconfig CUSTOM_WIDGET_LAYER_STATUS
+	bool "custom layer status widget"
+	
 endif # BOARD_DIGITI_LEFT || BOARD_DIGITI_RIGHT

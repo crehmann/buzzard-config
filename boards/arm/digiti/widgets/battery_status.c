@@ -20,9 +20,30 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
 LV_IMG_DECLARE(battery_5_img);
+LV_IMG_DECLARE(battery_4_img);
+LV_IMG_DECLARE(battery_3_img);
+LV_IMG_DECLARE(battery_2_img);
+LV_IMG_DECLARE(battery_1_img);
+LV_IMG_DECLARE(battery_charging_img);
 
 void set_battery_symbol(lv_obj_t *icon) {
-    lv_img_set_src(icon, &battery_5_img);
+    uint8_t level = bt_bas_get_battery_level();
+
+#if IS_ENABLED(CONFIG_USB)
+    if (zmk_usb_is_powered()) {
+        lv_img_set_src(icon, &battery_charging_img);
+    } else if (level > 80) {
+        lv_img_set_src(icon, &battery_5_img);
+    } else if (level > 60) {
+        lv_img_set_src(icon, &battery_4_img);
+    } else if (level > 20) {
+        lv_img_set_src(icon, &battery_3_img);
+    } else if (level > 20) {
+        lv_img_set_src(icon, &battery_2_img);
+    } else {
+        lv_img_set_src(icon, &battery_1_img);
+    }
+#endif /* IS_ENABLED(CONFIG_USB) */
 }
 
 int zmk_widget_battery_status_init(struct zmk_widget_battery_status *widget, lv_obj_t *parent) {
@@ -34,7 +55,6 @@ int zmk_widget_battery_status_init(struct zmk_widget_battery_status *widget, lv_
 }
 
 lv_obj_t *zmk_widget_battery_status_obj(struct zmk_widget_battery_status *widget) {
-    //LOG_DBG("Label: %p", widget->obj);
     return widget->obj;
 }
 
