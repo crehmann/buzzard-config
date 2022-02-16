@@ -1,6 +1,4 @@
-# Dao board configuration
-
-# Copyright (c) 2021 Rafael Yumagulov
+# Copyright (c) 2021 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
 config BOARD_DIGITI_LEFT
