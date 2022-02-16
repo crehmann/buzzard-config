@@ -42,10 +42,10 @@ config ZMK_BATTERY_VOLTAGE_DIVIDER
 config ZMK_DISPLAY
 	select LVGL_USE_CONT
 	select LVGL_FONT_MONTSERRAT_26
+    select LVGL_USE_IMG
+	select LVGL_USE_ANIMATION
+	select LVGL_USE_LABEL
 
-choice ZMK_DISPLAY_STATUS_SCREEN
-	default ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN
-endchoice
 
 if ZMK_DISPLAY
 choice LVGL_THEME_DEFAULT_FONT_SMALL
@@ -75,7 +75,7 @@ config LVGL_DPI
 	default 30
 
 config LVGL_VDB_SIZE
-	default 16
+	default 4
 endif # ZMK_DISPLAY
 
 if USB
@@ -84,5 +84,14 @@ config USB_NRFX
 config USB_DEVICE_STACK
 	default y
 endif # USB
+
+menuconfig CUSTOM_WIDGET_BATTERY_STATUS
+	bool "custom battery status widget"
+
+menuconfig CUSTOM_WIDGET_LAYER_STATUS
+	bool "custom layer status widget"
+	
+menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
+	bool "custom output status widget"
 
 endif # BOARD_DIGITI_LEFT || BOARD_DIGITI_RIGHT
