@@ -109,7 +109,7 @@ void set_status_symbol(lv_obj_t *icon) {
 
 int zmk_widget_output_status_init(struct zmk_widget_output_status *widget, lv_obj_t *parent) {
     widget->obj = lv_img_create(parent, NULL);
-    lv_img_set_auto_size(widget->obj, true);
+    lv_obj_set_size(widget->obj, 38, 53);
     set_status_symbol(widget->obj);
     sys_slist_append(&widgets, &widget->node);
     return 0;

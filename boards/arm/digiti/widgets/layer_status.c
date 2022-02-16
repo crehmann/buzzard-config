@@ -26,28 +26,35 @@ void set_layer_symbol(lv_obj_t *icon) {
     int active_layer_index = zmk_keymap_highest_layer_active();
     const char *layer_label = zmk_keymap_layer_label(active_layer_index);
 
-    // LOG_DBG("Layer changed to %i", active_layer_index);
+     LOG_DBG("Layer changed to %i", active_layer_index);
 
     if (layer_label == NULL) {
         lv_img_set_src(icon, &layer_key_img);
+        LOG_DBG("set keyboard layer");
     } else if (strcmp(layer_label, "adj") == 0) {
         lv_img_set_src(icon, &layer_adj_img);
+        LOG_DBG("set adj layer");
     } else if (strcmp(layer_label, "base") == 0) {
-        lv_img_set_src(icon, &layer_adj_img);
+        lv_img_set_src(icon, &layer_base_img);
+        LOG_DBG("set base layer");
     } else if (strcmp(layer_label, "fun") == 0) {
+        LOG_DBG("set fun layer");
         lv_img_set_src(icon, &layer_fun_img);
     } else if (strcmp(layer_label, "num") == 0) {
         lv_img_set_src(icon, &layer_num_img);
+        LOG_DBG("set num layer");
     } else if (strcmp(layer_label, "sym") == 0) {
         lv_img_set_src(icon, &layer_sym_img);
+        LOG_DBG("set sym layer");
     } else {
         lv_img_set_src(icon, &layer_key_img);
+        LOG_DBG("set other layer");
     }
 }
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
     widget->obj = lv_img_create(parent, NULL);
-    lv_img_set_auto_size(widget->obj, true);
+    lv_obj_set_size(widget->obj, 38, 53);
     set_layer_symbol(widget->obj);
     sys_slist_append(&widgets, &widget->node);
     return 0;
