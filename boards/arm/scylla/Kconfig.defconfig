@@ -1,0 +1,104 @@
+# Copyright (c) 2021 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if BOARD_SCYLLA_LEFT
+
+	config ZMK_KEYBOARD_NAME
+	default "Scylla"
+
+    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif # BOARD_SCYLLA_LEFT
+
+if BOARD_SCYLLA_RIGHT
+
+	config ZMK_KEYBOARD_NAME
+	default "Scylla Right"
+
+endif # BOARD_SCYLLA_RIGHT
+
+
+if BOARD_SCYLLA_LEFT || BOARD_SCYLLA_RIGHT
+
+config BOARD
+	default "scylla"
+
+config ZMK_SPLIT
+	default y
+
+config BT_CTLR
+	default BT
+
+config ZMK_BLE
+	default y
+
+config ZMK_USB
+	default y
+
+config PINMUX
+	default y
+
+config BOARD_SCYLLA_CHARGER
+	default y
+
+config ZMK_BATTERY_VOLTAGE_DIVIDER
+	default y
+
+config ZMK_DISPLAY
+	select LVGL_USE_CONT
+	select LVGL_FONT_MONTSERRAT_26
+    select LVGL_USE_IMG
+	select LVGL_USE_ANIMATION
+	select LVGL_USE_LABEL
+
+
+if ZMK_DISPLAY
+choice LVGL_THEME_DEFAULT_FONT_SMALL
+    default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_36
+
+endchoice
+config LVGL_HOR_RES_MAX
+	default 160
+
+config LVGL_VER_RES_MAX
+	default 68
+
+config SPI
+	default y
+
+config LS0XX
+	default y
+
+config LVGL_BITS_PER_PIXEL
+	default 1
+
+choice LVGL_COLOR_DEPTH
+	default LVGL_COLOR_DEPTH_1
+
+endchoice
+config LVGL_DPI
+	default 30
+
+config LVGL_VDB_SIZE
+	default 4
+endif # ZMK_DISPLAY
+
+if USB
+config USB_NRFX
+	default y
+config USB_DEVICE_STACK
+	default y
+endif # USB
+
+menuconfig CUSTOM_WIDGET_BATTERY_STATUS
+	bool "custom battery status widget"
+
+menuconfig CUSTOM_WIDGET_LAYER_STATUS
+	bool "custom layer status widget"
+	
+menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
+	bool "custom output status widget"
+
+endif # BOARD_SCYLLA_LEFT || BOARD_SCYLLA_RIGHT
+

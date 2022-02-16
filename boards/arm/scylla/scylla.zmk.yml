@@ -1,0 +1,13 @@
+file_format: "1"
+id: scylla
+name: Scylla
+type: shield
+url: https://github.com/Bastardkb/Scylla
+requires: [pro_micro]
+exposes: [spi_lcd]
+features:
+  - keys
+  - display
+siblings:
+  - scylla_left
+  - scylla_right
