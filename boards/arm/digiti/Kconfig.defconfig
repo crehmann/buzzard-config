@@ -75,7 +75,7 @@ config LVGL_DPI
 	default 30
 
 config LVGL_VDB_SIZE
-	default 16
+	default 4
 endif # ZMK_DISPLAY
 
 if USB
