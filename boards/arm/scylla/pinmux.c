@@ -11,12 +11,12 @@
 #include <sys/sys_io.h>
 #include <devicetree.h>
 
-static int pinmux_nrfmicro_init(const struct device *port) {
+static int pinmux_scylla_init(const struct device *port) {
     ARG_UNUSED(port);
 
-#if CONFIG_BOARD_NRFMICRO_13
+#if CONFIG_BOARD_SCYLLA_LEFT || CONFIG_BOARD_SCYLLA_RIGHT
     const struct device *p0 = device_get_binding("GPIO_0");
-#if CONFIG_BOARD_NRFMICRO_CHARGER
+#if CONFIG_BOARD_SCYLLA_CHARGER
     gpio_pin_configure(p0, 5, GPIO_OUTPUT);
     gpio_pin_set(p0, 5, 0);
 #else
@@ -26,4 +26,4 @@ static int pinmux_nrfmicro_init(const struct device *port) {
     return 0;
 }
 
-SYS_INIT(pinmux_nrfmicro_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
+SYS_INIT(pinmux_scylla_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
