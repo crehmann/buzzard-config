@@ -32,14 +32,20 @@ LV_IMG_DECLARE(output_ble_dis_3_img);
 LV_IMG_DECLARE(output_ble_dis_4_img);
 LV_IMG_DECLARE(output_ble_dis_5_img);
 LV_IMG_DECLARE(output_usb_img);
+LV_IMG_DECLARE(output_ble_adv_img);
+LV_IMG_DECLARE(output_ble_con_img);
+LV_IMG_DECLARE(output_ble_dis_img);
+
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
 void set_status_symbol(lv_obj_t *icon) {
-    enum zmk_endpoint selected_endpoint = zmk_endpoints_selected();
     bool active_profile_connected = zmk_ble_active_profile_is_connected();
     bool active_profie_bonded = !zmk_ble_active_profile_is_open();
+
+#if defined(CONFIG_ZMK_SPLIT_BLE_ROLE_CENTRAL)
     uint8_t active_profile_index = zmk_ble_active_profile_index();
+    enum zmk_endpoint selected_endpoint = zmk_endpoints_selected();
 
     switch (selected_endpoint) {
     case ZMK_ENDPOINT_USB:
@@ -105,6 +111,18 @@ void set_status_symbol(lv_obj_t *icon) {
         }
         break;
     }
+#endif
+#if !defined(CONFIG_ZMK_SPLIT_BLE_ROLE_CENTRAL)
+    if (active_profie_bonded) {
+        if (active_profile_connected) {
+            lv_img_set_src(icon, &output_ble_con_img);
+        } else {
+            lv_img_set_src(icon, &output_ble_dis_img);
+        }
+    } else {
+        lv_img_set_src(icon, &output_ble_adv_img);
+    }
+#endif
 }
 
 int zmk_widget_output_status_init(struct zmk_widget_output_status *widget, lv_obj_t *parent) {
