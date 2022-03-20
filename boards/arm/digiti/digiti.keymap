@@ -109,7 +109,7 @@
                      &trans         &trans         &trans         &trans        &trans                                            &kp LC(X)      &kp HOME        &kp UP         &kp END        &kp PSCRN 
                      &trans         &trans         &trans         &trans        &trans                                            &kp LC(C)      &kp LEFT        &kp DOWN       &kp RIGHT      &none    
                      &trans         &trans         &trans         &trans        &trans                                            &kp LC(V)      &kp PAUSE_BREAK &kp PG_DN      &kp PG_UP      &trans        
-                                    &trans         &trans         &trans        &trans        &trans                  &kp BSPC    &kp RET         &kp DEL        &trans         &trans 
+                                    &trans         &trans         &trans        &trans        &trans                  &kp BSPC    &kp RET        &kp DEL         &trans         &trans 
              >;
          };
          symb {

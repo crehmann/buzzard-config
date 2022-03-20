@@ -6,9 +6,7 @@
 
  /dts-v1/;
  #include <nordic/nrf52840_qiaa.dtsi>
- 
  #include <dt-bindings/zmk/matrix_transform.h>
- 
  
  / {
      model = "digiti";
@@ -58,7 +56,7 @@
      ext-power {
 		compatible = "zmk,ext-power-generic";
 		label = "EXT_POWER";
-		control-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
+		control-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
 	};
  };
  
@@ -107,8 +105,8 @@
 		label = "DISPLAY";
 		spi-max-frequency = <2000000>;
 		reg = <0>;
-		width = <160>;
-		height = <68>;
+		width = <128>;
+		height = <128>;
 		extcomin-gpios = <&gpio0 12 GPIO_ACTIVE_HIGH>;
 		extcomin-frequency = <60>;
 		disp-en-gpios =  <&gpio1 15 GPIO_ACTIVE_HIGH>; 

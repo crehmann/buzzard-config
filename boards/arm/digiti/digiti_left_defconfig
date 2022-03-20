@@ -29,24 +29,19 @@ CONFIG_CLOCK_CONTROL_NRF_K32SRC_30PPM=y
 
 # Enable display
 CONFIG_ZMK_DISPLAY=y
-#CONFIG_LVGL_BITS_PER_PIXEL=1
-#CONFIG_LVGL_COLOR_DEPTH_1=y
-
+CONFIG_ZMK_DISPLAY=y
 CONFIG_LVGL_USE_THEME_MONO=y
 CONFIG_LVGL_COLOR_TRANSP_CUSTOM=y
 CONFIG_LVGL_CUSTOM_COLOR_TRANSP_RED=0x00
 CONFIG_LVGL_CUSTOM_COLOR_TRANSP_GREEN=0x00
 CONFIG_LVGL_CUSTOM_COLOR_TRANSP_BLUE=0x00
 
+# Turn on logging, and set ZMK logging to debug output
+# CONFIG_ZMK_USB_LOGGING=y
 
-
-# # Turn on logging, and set ZMK logging to debug output
-CONFIG_ZMK_USB_LOGGING=y
-
-# # Turn on logging, and set ZMK logging to debug output
-CONFIG_LOG=y
-CONFIG_ZMK_LOG_LEVEL_DBG=y
-
+# Turn on logging, and set ZMK logging to debug output
+# CONFIG_LOG=y
+# CONFIG_ZMK_LOG_LEVEL_DBG=y
 
 # custom status screens
 CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM=y

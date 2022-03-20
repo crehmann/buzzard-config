@@ -53,10 +53,10 @@ choice LVGL_THEME_DEFAULT_FONT_SMALL
 
 endchoice
 config LVGL_HOR_RES_MAX
-	default 160
+	default 128
 
 config LVGL_VER_RES_MAX
-	default 68
+	default 128
 
 config SPI
 	default y
