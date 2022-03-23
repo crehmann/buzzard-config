@@ -85,7 +85,7 @@
  //  *                                      `----------------------------------'                                                           `----------------------------------'
              bindings = <
                      &kp Q         &kp W             &kp E             &kp R          &kp T                                                 &kp CH_Z       &kp U           &kp I           &kp O          &kp P 
-                     &kp A         &kp S             &kp D             &kp F          &kp G                                                 &kp H          &kp J           &kp K           &kp L          &kp K         
+                     &kp A         &kp S             &kp D             &kp F          &kp G                                                 &kp H          &kp J           &kp K           &kp L          &kp CH_ODIA         
                      &hm LGUI Z    &hm LALT X        &hm LCTRL C       &hm LSHFT V    &hm RALT B                                            &hm RALT N     &hm LSHFT M     &hm LCTRL COMMA &hm LALT DOT   &hm LGUI FSLH
                               &lt ADJL LG(LC(LEFT))  &kp LG(LC(RIGHT)) &mt LCTRL ESC  &lt NAVR SPACE &lt NUMR TAB             &lt FUNL BSPC &lt SYMB RET   &mt LSHIFT DEL  &kp LA(LEFT)    &kp LA(RIGHT)
             >;
@@ -115,13 +115,13 @@
          symb {
              label = "sym";
  //  *                               ,----------------------------------.                                                                       ,----------------------------------.
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
+//  *                                |   `  |   @  |  {   |   }  |  $   |                                                                       |      |      |      |      |      |      
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |   ä  |   &  |  (   |   )  |  |   |                                                                       |      |      |      |      |      |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |  [   |   ]  |      |                                                                       |      |      |      |      |      |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               `---------------------------+------+------.                                                         ,------+------+---------------------------'
  //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
@@ -130,7 +130,7 @@
              bindings = <
                      &kp CH_GRV     &kp CH_AT      &kp CH_LCBR     &kp CH_RCBR    &kp CH_DLR                                             &kp CH_DIAE    &kp CH_UDIA    &kp CH_SLSH    &kp CH_BSLS    &kp CH_CIRC
                      &kp CH_ADIA    &kp CH_AMPR    &kp CH_LPRN     &kp CH_RPRN    &kp CH_PIPE                                            &kp CH_QUOT    &kp CH_DQUO    &kp CH_QUES    &kp CH_EXLM    &kp CH_PLUS
-                     &kp CH_PERC    &kp CH_HASH    &kp CH_LBRC     &kp CH_RBRC    &kp CH_TILD                                            &kp CH_EURO    &kp CH_EQL     &kp CH_ASTR    &kp CH_LABK    &kp CH_RABK
+                     &kp CH_PERC    &kp CH_HASH    &kp CH_LBRC     &kp CH_RBRC    &kp CH_TILD                                            &kp CH_ASTR    &kp CH_EQL     &kp CH_LABK    &kp CH_RABK    &kp CH_EURO    
                                     &trans         &trans         &trans          &kp SPACE      &kp TAB                  &trans         &trans         &trans         &trans         &trans 
              >;
          };
