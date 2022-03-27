@@ -20,6 +20,56 @@
  #define ADJL   5    
  
  / {
+     macros {
+        md_code_i: md_code_i {
+            label = "MD Code Inline";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap_time 50>
+                , <&macro_tap &kp CH_GRV>
+                , <&macro_tap_time 10>
+                , <&macro_tap &kp CH_GRV &kp LEFT>
+                ;
+        };
+        md_code_b: md_code_b {
+            label = "MD Code Block";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap_time 10>
+                , <&macro_tap &kp CH_GRV &kp CH_GRV &kp CH_GRV &kp CH_GRV &kp CH_GRV &kp CH_GRV &kp LEFT &kp LEFT &kp LEFT &kp RET &kp RET &kp UP>
+                ;
+        };
+        up_ch_adia: up_ch_adia {
+            label = "Uppercase CH_ADIA";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap_time 10>
+                , <&macro_tap &kp CLCK &kp CH_ADIA &kp CLCK>
+                ;
+        };
+        up_ch_udia: up_ch_udia {
+            label = "Uppercase CH_UDIA";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap_time 10>
+                , <&macro_tap &kp CLCK &kp CH_UDIA &kp CLCK>
+                ;
+        };
+        
+        up_ch_odia: up_ch_odia {
+            label = "Uppercase CH_ODIA";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap_time 10>
+                , <&macro_tap &kp CLCK &kp CH_ODIA &kp CLCK>
+                ;
+        };
+    };
      behaviors {
          hm: homerow_mods {
              compatible = "zmk,behavior-hold-tap";
@@ -30,6 +80,34 @@
              flavor = "tap-preferred";
              bindings = <&kp>, <&kp>;
          };
+         td_udia: tap_dance_udia {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_UDIA";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp CH_UDIA>, <&up_ch_udia>;
+        };
+         td_adia: tap_dance_adia {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_ADIA";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp CH_ADIA>, <&up_ch_adia>;
+        };
+         td_odia: tap_dance_odia {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_ODIA";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp CH_ODIA>, <&up_ch_odia>;
+        };
+        td_grave: tap_dance_grave {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_GRAVE";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp CH_GRV>, <&md_code_i>, <&md_code_b>;
+        };
      };
  // /*
  //  *
@@ -84,8 +162,8 @@
  //  *                                      |      |      |  CTL | NAVR | NUMR |                                                           | FUNL | SYML | LSFT |      |      |
  //  *                                      `----------------------------------'                                                           `----------------------------------'
              bindings = <
-                     &kp Q         &kp W             &kp E             &kp R          &kp T                                                 &kp CH_Z       &kp U           &kp I           &kp O          &kp P 
-                     &kp A         &kp S             &kp D             &kp F          &kp G                                                 &kp H          &kp J           &kp K           &kp L          &kp CH_ODIA         
+                     &bootloader   &kp W             &kp E             &kp R          &kp T                                                 &kp CH_Z       &kp U           &kp I           &kp O          &kp P 
+                     &kp A         &kp S             &kp D             &kp F          &kp G                                                 &kp H          &kp J           &kp K           &kp L          &td_odia         
                      &hm LGUI Z    &hm LALT X        &hm LCTRL C       &hm LSHFT V    &hm RALT B                                            &hm RALT N     &hm LSHFT M     &hm LCTRL COMMA &hm LALT DOT   &hm LGUI FSLH
                               &lt ADJL LG(LC(LEFT))  &kp LG(LC(RIGHT)) &mt LCTRL ESC  &lt NAVR SPACE &lt NUMR TAB             &lt FUNL BSPC &lt SYMB RET   &mt LSHIFT DEL  &kp LA(LEFT)    &kp LA(RIGHT)
             >;
@@ -93,22 +171,22 @@
          navr {
              label = "nav";
  //  *                               ,----------------------------------.                                                                       ,----------------------------------.
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
+ //  *                               |      |      |      |      |      |                                                                       |  Cut | Break| PgUp | PgDwn|      |      
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       | Copy |   ←  |   ↑  |   ↓  |   →  |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       | Paste|PrScrn| Home |  End |      |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               `---------------------------+------+------.                                                         ,------+------+---------------------------'
- //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
+ //  *                                      |      |      |      |      |      |                                                         | Bksp | Enter|  Del |      |      |
  //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
  //  *                                      `----------------------------------'                                                         `----------------------------------'
              bindings = <
-                     &trans         &trans         &trans         &trans        &trans                                            &kp LC(X)      &kp HOME        &kp UP         &kp END        &kp PSCRN 
-                     &trans         &trans         &trans         &trans        &trans                                            &kp LC(C)      &kp LEFT        &kp DOWN       &kp RIGHT      &none    
-                     &trans         &trans         &trans         &trans        &trans                                            &kp LC(V)      &kp PAUSE_BREAK &kp PG_DN      &kp PG_UP      &trans        
+                     &trans         &trans         &trans         &trans        &trans                                            &kp LC(X)      &kp PAUSE_BREAK &kp PG_DN      &kp PG_UP     &trans
+                     &trans         &trans         &trans         &trans        &trans                                            &kp LC(C)      &kp LEFT        &kp UP         &kp DOWN      &kp RIGHT   
+                     &trans         &trans         &trans         &trans        &trans                                            &kp LC(V)      &kp PSCRN       &kp HOME       &kp END       &trans        
                                     &trans         &trans         &trans        &trans        &trans                  &kp BSPC    &kp RET        &kp DEL         &trans         &trans 
              >;
          };
@@ -128,8 +206,8 @@
  //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
  //  *                                      `----------------------------------'                                                         `----------------------------------'
              bindings = <
-                     &kp CH_GRV     &kp CH_AT      &kp CH_LCBR     &kp CH_RCBR    &kp CH_DLR                                             &kp CH_DIAE    &kp CH_UDIA    &kp CH_SLSH    &kp CH_BSLS    &kp CH_CIRC
-                     &kp CH_ADIA    &kp CH_AMPR    &kp CH_LPRN     &kp CH_RPRN    &kp CH_PIPE                                            &kp CH_QUOT    &kp CH_DQUO    &kp CH_QUES    &kp CH_EXLM    &kp CH_PLUS
+                     &td_grave      &kp CH_AT      &kp CH_LCBR     &kp CH_RCBR    &kp CH_DLR                                             &kp CH_DIAE    &td_udia       &kp CH_SLSH    &kp CH_BSLS    &kp CH_CIRC
+                     &td_adia       &kp CH_AMPR    &kp CH_LPRN     &kp CH_RPRN    &kp CH_PIPE                                            &kp CH_QUOT    &kp CH_DQUO    &kp CH_QUES    &kp CH_EXLM    &kp CH_PLUS
                      &kp CH_PERC    &kp CH_HASH    &kp CH_LBRC     &kp CH_RBRC    &kp CH_TILD                                            &kp CH_ASTR    &kp CH_EQL     &kp CH_LABK    &kp CH_RABK    &kp CH_EURO    
                                     &trans         &trans         &trans          &kp SPACE      &kp TAB                  &trans         &trans         &trans         &trans         &trans 
              >;
@@ -137,17 +215,17 @@
          numr {
              label = "num";
  //  *                               ,----------------------------------.                                                                       ,----------------------------------.
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
+ //  *                               |      |      |      |      |      |                                                                       |  /   |   7  |   8  |   9  |  -   |      
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       |  *   |   4  |   5  |   6  |  +   |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       |  0   |   1  |   2  |   3  |  .   |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               `---------------------------+------+------.                                                         ,------+------+---------------------------'
- //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
- //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
+ //  *                                      |      |      |      |      |      |                                                         | Bksp | Enter|      |      |      |
+ //  *                                      |      |      |      |      |      |                                                         | ADJL |      |      |      |      |
  //  *                                      `----------------------------------'                                                         `----------------------------------'
              bindings = <
                      &trans         &trans         &trans         &trans        &trans                                               &kp SLASH      &kp N7         &kp N8         &kp N9         &kp MINUS
@@ -159,16 +237,16 @@
          funl {
              label = "fun";
  //  *                               ,----------------------------------.                                                                       ,----------------------------------.
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
+ //  *                               | F12  |  F7  |  F8  |  F9  | Break|                                                                       |      |      |      |      |      |      
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               | F11  |  F4  |  F5  |  F6  | PrScr|                                                                       |      |      |      |      |      |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
- //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               | F10  |  F1  |  F2  |  F3  | CapL |                                                                       |      |      |      |      |      |
  //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
  //  *                               `---------------------------+------+------.                                                         ,------+------+---------------------------'
- //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
+ //  *                                      |      |      |      | Space|  ADJ |                                                         |      |      |      |      |      |
  //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
  //  *                                      `----------------------------------'                                                         `----------------------------------'
              bindings = <
