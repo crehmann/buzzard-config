@@ -6,16 +6,3 @@ config BOARD_ENABLE_DCDC
 	select SOC_DCDC_NRF52X
 	default y
 	depends on (BOARD_DIGITI_LEFT || BOARD_DIGITI_RIGHT)
-
-
-if CUSTOM_WIDGET_BONGO_CAT
-
-config CUSTOM_WIDGET_BONGO_CAT_IDLE_LIMIT
-    int "Upper limit for WPM for showing idle animation"
-    default 30
-
-config CUSTOM_WIDGET_BONGO_CAT_SLOW_LIMIT
-    int "Upper limit for WPM for showing slow typing image"
-    default 60
-
-endif # BONGO_CAT

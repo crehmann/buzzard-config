@@ -92,12 +92,4 @@ menuconfig CUSTOM_WIDGET_LAYER_STATUS
 	
 menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
 	bool "custom output status widget"
-
-menuconfig CUSTOM_WIDGET_BONGO_CAT
-	bool "Bongo Cat"
-	depends on !ZMK_DISPLAY_WORK_QUEUE_DEDICATED && (!ZMK_SPLIT || ZMK_SPLIT_BLE_ROLE_CENTRAL)
-    select LVGL_USE_IMG
-    select LVGL_USE_ANIMATION
-    select ZMK_WPM
-
 endif # BOARD_DIGITI_LEFT || BOARD_DIGITI_RIGHT
