@@ -17,8 +17,6 @@ zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_LAYER_STATUS widgets/layer_sta
 zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_LAYER_STATUS widgets/layer_status_images.c)
 zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_OUTPUT_STATUS widgets/output_status.c)
 zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_OUTPUT_STATUS widgets/output_status_images.c)
-zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_BONGO_CAT widgets/bongo_cat_widget.c)
-zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_BONGO_CAT widgets/bongo_cat_images.c)
 zephyr_library_sources(${ZEPHYR_BASE}/misc/empty_file.c)
 zephyr_library_include_directories(${CMAKE_SOURCE_DIR}/include)
 zephyr_library_include_directories(${ZEPHYR_BASE}/drivers)
