@@ -10,11 +10,11 @@ config BOARD_ENABLE_DCDC
 
 if CUSTOM_WIDGET_BONGO_CAT
 
-config BONGO_CAT_IDLE_LIMIT
+config CUSTOM_WIDGET_BONGO_CAT_IDLE_LIMIT
     int "Upper limit for WPM for showing idle animation"
     default 30
 
-config BONGO_CAT_SLOW_LIMIT
+config CUSTOM_WIDGET_BONGO_CAT_SLOW_LIMIT
     int "Upper limit for WPM for showing slow typing image"
     default 60
 

@@ -1,19 +1,17 @@
 /*
- * Copyright (c) 2021 Pete Johanson
+ * Copyright (c) 2021 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
  */
-#pragma once
-
 
 #include <lvgl.h>
 #include <kernel.h>
 
-struct bongo_cat_widget {
+struct zmk_widget_bongo_cat {
     sys_snode_t node;
     lv_obj_t *obj;
     lv_anim_t anim;
 };
 
-int bongo_cat_widget_init(struct bongo_cat_widget *widget, lv_obj_t *parent);
-lv_obj_t *bongo_cat_widget_obj(struct bongo_cat_widget *widget);
+int zmk_widget_bongo_cat_init(struct zmk_widget_bongo_cat *widget, lv_obj_t *parent);
+lv_obj_t *zmk_widget_bongo_cat_obj(struct zmk_widget_bongo_cat *widget);

@@ -43,7 +43,6 @@ config ZMK_DISPLAY
 	select LVGL_USE_CONT
 	select LVGL_FONT_MONTSERRAT_26
     select LVGL_USE_IMG
-	select LVGL_USE_ANIMATION
 	select LVGL_USE_LABEL
 
 
@@ -75,7 +74,7 @@ config LVGL_DPI
 	default 30
 
 config LVGL_VDB_SIZE
-	default 32
+	default 8
 endif # ZMK_DISPLAY
 
 if USB
@@ -94,8 +93,11 @@ menuconfig CUSTOM_WIDGET_LAYER_STATUS
 menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
 	bool "custom output status widget"
 
-	
 menuconfig CUSTOM_WIDGET_BONGO_CAT
 	bool "Bongo Cat"
+	depends on !ZMK_DISPLAY_WORK_QUEUE_DEDICATED && (!ZMK_SPLIT || ZMK_SPLIT_BLE_ROLE_CENTRAL)
+    select LVGL_USE_IMG
+    select LVGL_USE_ANIMATION
+    select ZMK_WPM
 
 endif # BOARD_DIGITI_LEFT || BOARD_DIGITI_RIGHT
