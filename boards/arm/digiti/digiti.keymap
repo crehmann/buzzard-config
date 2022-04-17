@@ -125,23 +125,28 @@
          compatible = "zmk,combos";
          combo_ctrl_t {
              timeout-ms = <50>;
-             key-positions = <3 4>;
+             key-positions = <4 14>;
              bindings = <&kp LC(T)>;
          };
          combo_ctrl_z {
              timeout-ms = <50>;
-             key-positions = <5 6>;
+             key-positions = <5 15>;
              bindings = <&kp LC(CH_Z)>;
          };
          combo_delete_left {
              timeout-ms = <50>;
-             key-positions = <2 3>;
+             key-positions = <12 22>;
              bindings = <&kp DEL>;
          };
          combo_enter_left {
              timeout-ms = <50>;
-             key-positions = <12 13>;
+             key-positions = <13 23>;
              bindings = <&kp ENTER>;
+         };
+         combo_caps_word {
+             timeout-ms = <50>;
+             key-positions = <23 26>;
+             bindings = <&caps_word>;
          };
      };
      keymap {
@@ -162,7 +167,7 @@
  //  *                                      |      |      |  CTL | NAVR | NUMR |                                                           | FUNL | SYML | LSFT |      |      |
  //  *                                      `----------------------------------'                                                           `----------------------------------'
              bindings = <
-                     &bootloader   &kp W             &kp E             &kp R          &kp T                                                 &kp CH_Z       &kp U           &kp I           &kp O          &kp P 
+                     &kp Q         &kp W             &kp E             &kp R          &kp T                                                 &kp CH_Z       &kp U           &kp I           &kp O          &kp P 
                      &kp A         &kp S             &kp D             &kp F          &kp G                                                 &kp H          &kp J           &kp K           &kp L          &td_odia         
                      &hm LGUI Z    &hm LALT X        &hm LCTRL C       &hm LSHFT V    &hm RALT B                                            &hm RALT N     &hm LSHFT M     &hm LCTRL COMMA &hm LALT DOT   &hm LGUI FSLH
                               &lt ADJL LG(LC(LEFT))  &kp LG(LC(RIGHT)) &mt LCTRL ESC  &lt NAVR SPACE &lt NUMR TAB             &lt FUNL BSPC &lt SYMB RET   &mt LSHIFT DEL  &kp LA(LEFT)    &kp LA(RIGHT)
