@@ -17,6 +17,9 @@
          zephyr,code-partition = &code_partition;
          zephyr,sram = &sram0;
          zephyr,flash = &flash0;
+		 zephyr,display = &lcd;
+		 zephyr,console = &cdc_acm_uart;
+		 zmk,battery = &vbatt;
          zmk,kscan = &kscan0;
          zmk,matrix_transform = &default_transform;
      };
@@ -61,7 +64,7 @@
 		control-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
 	};
 
-	vbatt {
+	vbatt: vbatt {
 		compatible = "zmk,battery-voltage-divider";
 		label = "BATTERY";
 		io-channels = <&adc 2>;
@@ -101,6 +104,10 @@
 
 &usbd {
 	status = "okay";
+	cdc_acm_uart: cdc_acm_uart {
+		compatible = "zephyr,cdc-acm-uart";
+		label = "CDC_ACM_0";
+	};
 };
 
 &spi0 {
@@ -112,7 +119,7 @@
     // Unused pin, needed for SPI definition, but not used by the display driver itself.
     miso-pin = <22>; // 0.22 is not broken out on the nRFMicro
 
-	ls0xx@0 {
+	lcd: ls0xx@0 {
 		compatible = "sharp,ls0xx";
 		label = "DISPLAY";
 		spi-max-frequency = <2000000>;
