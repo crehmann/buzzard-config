@@ -13,7 +13,7 @@
     // Unused pin, needed for SPI definition, but not used by the display driver itself.
     miso-pin = <7>; // 0.07 is not broken out on the n!n
 
-	ls0xx@0 {
+	lcd: ls0xx@0 {
 		compatible = "sharp,ls0xx";
 		label = "DISPLAY";
 		spi-max-frequency = <2000000>;
