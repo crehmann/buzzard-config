@@ -1,0 +1,10 @@
+# Copyright (c) 2021 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+config BOARD_TPS42_LEFT
+	bool "tps42_left"
+	depends on SOC_NRF52840_QIAA
+
+config BOARD_TPS42_RIGHT
+	bool "tps42_right"
+	depends on SOC_NRF52840_QIAA
