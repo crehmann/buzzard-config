@@ -17,7 +17,9 @@
  #define SYMB   2
  #define NUMR   3
  #define FUNL   4
- #define ADJL   5    
+ #define ADJL   5   
+ #define GAME1  6    
+ #define GAME2  7    
  
  / {
      macros {
@@ -192,7 +194,7 @@
                      &trans         &trans         &trans         &trans        &trans                                            &kp LC(X)      &kp PAUSE_BREAK &kp PG_DN      &kp PG_UP     &trans
                      &trans         &trans         &trans         &trans        &trans                                            &kp LC(C)      &kp LEFT        &kp UP         &kp DOWN      &kp RIGHT   
                      &trans         &trans         &trans         &trans        &trans                                            &kp LC(V)      &kp PSCRN       &kp HOME       &kp END       &trans        
-                                    &trans         &trans         &trans        &trans        &trans                  &kp BSPC    &kp RET        &kp DEL         &trans         &trans 
+                                    &to GAME1      &trans         &trans        &trans        &trans                  &kp BSPC    &kp RET        &kp DEL         &trans         &trans 
              >;
          };
          symb {
@@ -283,6 +285,50 @@
                                     &trans         &trans         &trans        &trans        &trans                   &trans        &trans        &trans         &trans        &trans     
              >;
          };
+         game1 {
+             label = "game";
+ //  *                               ,----------------------------------.                                                                       ,----------------------------------.
+ //  *                               |   Q  |   W  |   E  |   R  |   T  |                                                                       |      |      |      |      |      |      
+ //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
+ //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
+ //  *                               |   A  |   S  |   D  |   F  |   G  |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
+ //  *                               |   Y  |   X  |   C  |   V  |  B   |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               `---------------------------+------+------.                                                         ,------+------+---------------------------'
+ //  *                                      |   .  | Alt+,| BSPC |  Esc |  Del |                                                         |      |      |      |      |      |
+ //  *                                      |      |      |      | GAME2|      |                                                         |      |      |      |      |      |
+ //  *                                      `----------------------------------'                                                         `----------------------------------'
+            bindings = <
+                     &kp Q          &kp W          &kp E          &kp R         &kp T                                               &trans        &trans         &trans        &trans        &trans 
+                     &kp A          &kp S          &kp D          &kp F         &kp G                                               &trans        &trans         &trans        &trans        &trans
+                     &kp Y          &kp X          &kp C          &kp V         &kp B                                               &trans        &trans         &trans        &trans        &trans     
+                                    &kp DOT        &kp LA(COMMA)  &kp BSPC      &lt GAME2 ESC     &kp DEL             &trans        &trans        &trans         &trans        &trans     
+             >;
+         };
+         game2 {
+             label = "game";
+ //  *                               ,----------------------------------.                                                                       ,----------------------------------.
+ //  *                               |   6  |   7  |   8  |   9  |   0  |                                                                       |      |      |      |      |      |      
+ //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |      
+ //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
+ //  *                               |   1  |   2  |   3  |   4  |   5  |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               |------+------+------+------+------|                                                                       |------+------+------+------+------|
+ //  *                               |      |      |      |      | LCTR |                                                                       |      |      |      |      |      |
+ //  *                               |      |      |      |      |      |                                                                       |      |      |      |      |      |
+ //  *                               `---------------------------+------+------.                                                         ,------+------+---------------------------'
+ //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
+ //  *                                      |      |      |      |      |      |                                                         |      |      |      |      |      |
+ //  *                                      `----------------------------------'                                                         `----------------------------------'
+            bindings = <
+                     &kp N6         &kp N8         &kp N8         &kp N9        &kp N0                                               &trans        &trans         &trans        &trans        &trans 
+                     &kp N1         &kp N2         &kp N3         &kp N4        &kp N5                                               &trans        &trans         &trans        &trans        &trans
+                     &trans         &trans         &trans         &trans        &sk LCTRL                                              &trans        &trans         &trans        &trans        &trans     
+                                    &to BASE       &trans         &trans        &trans        &trans                   &trans        &trans        &trans         &trans        &trans     
+             >;
+         };
     };
 };
 /*
@@ -307,6 +353,5 @@
                      &trans         &trans         &trans         &trans        &trans                                               &trans        &trans         &trans        &trans        &trans     
                                     &trans         &trans         &trans        &trans        &trans                   &trans        &trans        &trans         &trans        &trans     
              >;
- 
          };
 */

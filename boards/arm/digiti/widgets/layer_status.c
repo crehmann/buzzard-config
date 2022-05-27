@@ -21,6 +21,7 @@ LV_IMG_DECLARE(layer_fun_img);
 LV_IMG_DECLARE(layer_num_img);
 LV_IMG_DECLARE(layer_sym_img);
 LV_IMG_DECLARE(layer_key_img);
+LV_IMG_DECLARE(layer_game_img);
 
 void set_layer_symbol(lv_obj_t *icon) {
     int active_layer_index = zmk_keymap_highest_layer_active();
@@ -46,6 +47,9 @@ void set_layer_symbol(lv_obj_t *icon) {
     } else if (strcmp(layer_label, "sym") == 0) {
         lv_img_set_src(icon, &layer_sym_img);
         LOG_DBG("set sym layer");
+    } else if (strcmp(layer_label, "game") == 0) {
+        lv_img_set_src(icon, &layer_game_img);
+        LOG_DBG("set game layer");
     } else {
         lv_img_set_src(icon, &layer_key_img);
         LOG_DBG("set other layer");
