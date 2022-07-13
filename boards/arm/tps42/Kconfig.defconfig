@@ -3,10 +3,10 @@
 
 if BOARD_TPS42_LEFT
 
-	config ZMK_KEYBOARD_NAME
+config ZMK_KEYBOARD_NAME
 	default "TPS42"
 
-    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
 endif # BOARD_TPS42_LEFT
@@ -99,6 +99,9 @@ menuconfig CUSTOM_WIDGET_LAYER_STATUS
 	
 menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
 	bool "custom output status widget"
+
+menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
+	bool "custom perihperal status widget"
 
 endif # BOARD_TPS42_LEFT || BOARD_TPS42_RIGHT
 
