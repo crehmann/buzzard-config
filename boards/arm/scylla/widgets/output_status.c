@@ -43,7 +43,7 @@ void set_status_symbol(lv_obj_t *icon) {
     bool active_profile_connected = zmk_ble_active_profile_is_connected();
     bool active_profie_bonded = !zmk_ble_active_profile_is_open();
 
-#if defined(CONFIG_ZMK_SPLIT_BLE_ROLE_CENTRAL)
+#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     uint8_t active_profile_index = zmk_ble_active_profile_index();
     enum zmk_endpoint selected_endpoint = zmk_endpoints_selected();
 
@@ -112,7 +112,7 @@ void set_status_symbol(lv_obj_t *icon) {
         break;
     }
 #endif
-#if !defined(CONFIG_ZMK_SPLIT_BLE_ROLE_CENTRAL)
+#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     if (active_profie_bonded) {
         if (active_profile_connected) {
             lv_img_set_src(icon, &output_ble_con_img);

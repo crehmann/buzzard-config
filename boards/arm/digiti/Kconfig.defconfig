@@ -3,10 +3,10 @@
 
 if BOARD_DIGITI_LEFT
 
-	config ZMK_KEYBOARD_NAME
+config ZMK_KEYBOARD_NAME
 	default "Digiti"
 
-    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
 endif # BOARD_DIGITI_LEFT

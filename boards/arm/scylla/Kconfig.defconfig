@@ -3,10 +3,10 @@
 
 if BOARD_SCYLLA_LEFT
 
-	config ZMK_KEYBOARD_NAME
+config ZMK_KEYBOARD_NAME
 	default "Scylla"
 
-    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
 endif # BOARD_SCYLLA_LEFT
