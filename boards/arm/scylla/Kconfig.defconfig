@@ -100,5 +100,8 @@ menuconfig CUSTOM_WIDGET_LAYER_STATUS
 menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
 	bool "custom output status widget"
 
+menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
+	bool "custom perihperal status widget"
+
 endif # BOARD_SCYLLA_LEFT || BOARD_SCYLLA_RIGHT
 
