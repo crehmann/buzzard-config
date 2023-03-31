@@ -1,0 +1,8 @@
+file_format: "1"
+id: nrftester
+name: NRF Tester
+type: shield
+url: 
+requires: [pro_micro]
+features:
+  - keys
