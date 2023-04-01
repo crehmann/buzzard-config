@@ -1,0 +1,27 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    sck-pin = <17>;
+    mosi-pin = <15>;
+    cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
+    // Unused pin, needed for SPI definition, but not used by the display driver itself.
+    miso-pin = <22>; // 0.22 is not broken out on the nRFMicro
+
+	lcd: ls0xx@0 {
+		compatible = "sharp,ls0xx";
+		label = "DISPLAY";
+		spi-max-frequency = <2000000>;
+		reg = <0>;
+		width = <160>;
+		height = <68>;
+		extcomin-gpios = <&pro_micro 0 GPIO_ACTIVE_HIGH>;
+		extcomin-frequency = <60>;
+		disp-en-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>; 
+	};
+};
