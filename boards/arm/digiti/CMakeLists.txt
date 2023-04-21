@@ -1,5 +1,5 @@
 zephyr_library()
-zephyr_library_include_directories(${ZEPHYR_LVGL_MODULE_DIR})
+zephyr_library_include_directories(${ZEPHYR_LV_MODULE_DIR})
 zephyr_library_include_directories(${ZEPHYR_BASE}/lib/gui/lvgl/)
 zephyr_library_sources_ifdef(CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM custom_status_screen.c)
 zephyr_library_sources_ifdef(CONFIG_CUSTOM_WIDGET_BATTERY_STATUS widgets/battery_status.c)

@@ -280,7 +280,7 @@
  //  *                                      `----------------------------------'                                                         `----------------------------------'
              bindings = <
                      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3  &bt BT_SEL 4                                         &trans        &trans         &trans        &trans        &trans 
-                     &reset         &kp C_VOL_DN   &kp C_VOL_UP   &kp K_MUTE    &out OUT_TOG                                         &trans        &trans         &trans        &trans        &trans
+                     &sys_reset         &kp C_VOL_DN   &kp C_VOL_UP   &kp K_MUTE    &out OUT_TOG                                         &trans        &trans         &trans        &trans        &trans
                      &bootloader    &trans         &bt BT_CLR     &trans        &trans                                               &trans        &trans         &trans        &trans        &trans     
                                     &trans         &trans         &trans        &trans        &trans                   &trans        &trans        &trans         &trans        &trans     
              >;

@@ -3,15 +3,33 @@
  *
  * SPDX-License-Identifier: MIT
  */
+ &pinctrl {
+	spi1_default: spi1_default {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 0, 24)>,
+					<NRF_PSEL(SPIM_MOSI, 0, 6)>,
+					<NRF_PSEL(SPIM_MISO, 0, 7)>;
+		};
+	};
+
+	spi1_sleep: spi1_sleep {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 0, 24)>,
+					<NRF_PSEL(SPIM_MOSI, 0, 6)>,
+					<NRF_PSEL(SPIM_MISO, 0, 7)>;
+			low-power-enable;
+		};
+	};
+};
 
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
-    sck-pin = <24>;
-    mosi-pin = <6>;
+	pinctrl-0 = <&spi1_default>;
+	pinctrl-1 = <&spi1_sleep>;
+	pinctrl-names = "default", "sleep";
     cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
     // Unused pin, needed for SPI definition, but not used by the display driver itself.
-    miso-pin = <7>; // 0.07 is not broken out on the n!n
 
 	lcd: ls0xx@0 {
 		compatible = "sharp,ls0xx";

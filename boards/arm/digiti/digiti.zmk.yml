@@ -1,0 +1,13 @@
+file_format: "1"
+id: digiti
+name: Digiti
+type: shield
+url: https://github.com/crehmann/digiti
+requires: [pro_micro]
+exposes: [spi_lcd]
+features:
+  - keys
+  - display
+siblings:
+  - digiti_left
+  - digiti_right

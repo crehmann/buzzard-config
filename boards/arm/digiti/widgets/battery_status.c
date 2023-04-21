@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <kernel.h>
-#include <bluetooth/services/bas.h>
+#include <zephyr/kernel.h>
+#include <zephyr/bluetooth/services/bas.h>
 
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include <zmk/display.h>
@@ -80,8 +80,8 @@ ZMK_SUBSCRIPTION(widget_battery_status, zmk_battery_state_changed);
 #endif /* IS_ENABLED(CONFIG_USB) */
 
 int zmk_widget_battery_status_init(struct zmk_widget_battery_status *widget, lv_obj_t *parent) {
-    widget->obj = lv_img_create(parent, NULL);
-    lv_obj_set_size(widget->obj, 31, 53);
+    widget->obj = lv_img_create(parent);
+    lv_obj_set_size(widget->obj, 25, 40);
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
     return 0;

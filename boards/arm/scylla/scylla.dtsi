@@ -8,6 +8,7 @@
 #include <nordic/nrf52840_qiaa.dtsi>
 #include "arduino_pro_micro_pins.dtsi"
 #include <dt-bindings/zmk/matrix_transform.h>
+#include "scylla-pinctrl.dtsi"
 
 /{
      model = "scylla";
@@ -91,15 +92,17 @@
 };
 
 &i2c0 {
-	compatible = "nordic,nrf-twi";
-	sda-pin = <15>;
-	scl-pin = <17>;
+    compatible = "nordic,nrf-twi";
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-names = "default", "sleep";
 };
 
 &uart0 {
 	compatible = "nordic,nrf-uarte";
-	tx-pin = <6>;
-	rx-pin = <8>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &usbd {
@@ -113,11 +116,10 @@
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
-    sck-pin = <8>;//D2
-    mosi-pin = <6>;//D3
+	pinctrl-0 = <&spi0_default>;
+	pinctrl-1 = <&spi0_sleep>;
+	pinctrl-names = "default", "sleep";
     cs-gpios = <&pro_micro 2 GPIO_ACTIVE_HIGH>;//D1
-    // Unused pin, needed for SPI definition, but not used by the display driver itself.
-    miso-pin = <22>; // 0.22 is not broken out on the nRFMicro
 
 	lcd: ls0xx@0 {
 		compatible = "sharp,ls0xx";

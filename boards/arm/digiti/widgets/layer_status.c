@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include "layer_status.h"
@@ -57,8 +57,8 @@ void set_layer_symbol(lv_obj_t *icon) {
 }
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
-    widget->obj = lv_img_create(parent, NULL);
-    lv_obj_set_size(widget->obj, 38, 53);
+    widget->obj = lv_img_create(parent);
+    lv_obj_set_size(widget->obj, 52, 38);
     set_layer_symbol(widget->obj);
     sys_slist_append(&widgets, &widget->node);
     return 0;
